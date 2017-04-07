@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private View view1,view2,view3;
 
     private List<View> viewList=new ArrayList<>();
+    private List<String> titleList=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +36,18 @@ public class MainActivity extends AppCompatActivity {
         viewList.add(view2);
         viewList.add(view3);
 
+        titleList.add("方坤镇");
+        titleList.add("张越");
+        titleList.add("越子");
+        titleList.add("...");
+
+
+
         PagerAdapter pagerAdapter=new PagerAdapter() {
             @Override
             public boolean isViewFromObject(View arg0, Object arg1) {
                 // TODO Auto-generated method stub
-                return arg0 == arg1;
+                return arg0 == viewList.get((int)Integer.parseInt(arg1.toString()));
             }
 
             @Override
@@ -61,7 +69,13 @@ public class MainActivity extends AppCompatActivity {
                 container.addView(viewList.get(position));
 
 
-                return viewList.get(position);
+                return position;
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return titleList.get(position);
+
             }
         };
 
